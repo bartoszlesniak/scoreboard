@@ -36,7 +36,7 @@ class ScoreBoardServiceIT {
 
         // Then
         Optional<Game> optionalGame = repository.findByTeamNames(homeTeamName, awayTeamName);
-        assertFalse(optionalGame.isEmpty());
+        assertTrue(optionalGame.isPresent());
 
         final Game actualGame = optionalGame.get();
         assertEquals(homeTeamName, actualGame.getHomeTeamName());
@@ -81,7 +81,7 @@ class ScoreBoardServiceIT {
 
         // Then
         Optional<Game> optionalGame = repository.findByTeamNames(homeTeamName, awayTeamName);
-        assertTrue(optionalGame.isEmpty());
+        assertFalse(optionalGame.isPresent());
     }
 
     @Test
@@ -109,7 +109,7 @@ class ScoreBoardServiceIT {
 
         // Then
         Optional<Game> optionalGame = repository.findByTeamNames(homeTeamName, awayTeamName);
-        assertFalse(optionalGame.isEmpty());
+        assertTrue(optionalGame.isPresent());
 
         final Game actualGame = optionalGame.get();
         assertEquals(1, actualGame.getHomeTeamScore());
@@ -127,7 +127,7 @@ class ScoreBoardServiceIT {
 
         // Then
         Optional<Game> optionalGame = repository.findByTeamNames(homeTeamName, awayTeamName);
-        assertFalse(optionalGame.isEmpty());
+        assertTrue(optionalGame.isPresent());
 
         final Game actualGame = optionalGame.get();
         assertEquals(0, actualGame.getHomeTeamScore());

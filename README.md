@@ -2,6 +2,10 @@
 
 This library is responsible for registering scores of World Cup matches and showing them in specific order.
 
+## Prerequisites
+
+Java version 8 or higher is required to run the code in this library. 
+
 ## Usage
 
 Library comes with in memory repository implementation, so there's no need to use external databases to store the data.
@@ -53,10 +57,16 @@ To update the score of a game we should use the method `updateScores` with param
 - home team score,
 - away team score.
 
+```java
+scoreBoard.updateScore("Mexico", "Canada", 0, 5);
+```
+
 **Important notes:**
 - Scores need to be a positive numbers, when negative number will be provided, the `ScoreBoardServiceException` will be thrown.
 - There's a possibility to change the score to lower than it was before (in case of changing wrongly inserted score).
   System doesn't check if the inserted score is lower than previous one.
+- Game with team names must be started before updating the score. Order of home and away team names needs to be the same.
+  If game was not started before, the `ScoreBoardServiceException` will be thrown.
 
 ### Getting a summary of games by total score
 
@@ -64,3 +74,8 @@ To get a summary of games by total score we should use the method `getGamesSumma
 It will return `GamesSummaryVM` object will all games and their scores sorted by total score. If games will have the same
 total score, then they will be ordered by the most recently added to the system. If there will be no games at the moment,
 the result will have empty list.
+
+
+```java
+final GamesSummaryVM summary = service.getGamesSummaryByTotalScore();
+```
