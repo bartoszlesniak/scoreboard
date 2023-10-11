@@ -71,11 +71,11 @@ scoreBoard.updateScore("Mexico", "Canada", 0, 5);
 ### Getting a summary of games by total score
 
 To get a summary of games by total score we should use the method `getGamesSummaryByTotalScore`.
-It will return `GamesSummaryVM` object will all games and their scores sorted by total score. If games will have the same
+It will return `GamesSummaryVM` object with all games and their scores sorted by total score. If games will have the same
 total score, then they will be ordered by the most recently added to the system. If there will be no games at the moment,
 the result will have empty list.
 
 
 ```java
-final GamesSummaryVM summary = service.getGamesSummaryByTotalScore();
+final GamesSummaryVM summary = scoreBoard.getGamesSummaryByTotalScore();
 ```

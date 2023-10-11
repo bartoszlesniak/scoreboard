@@ -2,6 +2,9 @@ package org.example.scoreboard;
 
 import java.util.List;
 
+/**
+ * Games summary view model to return summary of currently active games.
+ */
 public class GamesSummaryVM {
     private final List<Game> games;
 
