@@ -164,6 +164,18 @@ class ScoreBoardServiceIT {
         assertEquals("Score cannot be lower than 0", exception.getMessage());
     }
 
+    private static void assertEqualsToGameVM(String expectedHomeTeamName,
+                                             String expectedAwayTeamName,
+                                             int expectedHomeTeamScore,
+                                             int expectedAwayTeamScore,
+                                             GamesSummaryVM.Game actualGameVM) {
+
+        assertEquals(expectedHomeTeamName, actualGameVM.getHomeTeamName());
+        assertEquals(expectedAwayTeamName, actualGameVM.getAwayTeamName());
+        assertEquals(expectedHomeTeamScore, actualGameVM.getHomeTeamScore());
+        assertEquals(expectedAwayTeamScore, actualGameVM.getAwayTeamScore());
+    }
+
     @Test
     void getGamesSummaryByTotalScore_returnsGamesSummary() {
         // When
@@ -172,11 +184,11 @@ class ScoreBoardServiceIT {
         // Then
         assertNotNull(summary);
         assertEquals(5, summary.getGames().size());
-        assertEquals(new GamesSummaryVM.Game("Uruguay", "Italy", 6, 6), summary.getGames().get(0));
-        assertEquals(new GamesSummaryVM.Game("Spain", "Brazil", 10, 2), summary.getGames().get(1));
-        assertEquals(new GamesSummaryVM.Game("Mexico", "Canada", 0, 5), summary.getGames().get(2));
-        assertEquals(new GamesSummaryVM.Game("Argentina", "Australia", 3, 1), summary.getGames().get(3));
-        assertEquals(new GamesSummaryVM.Game("Germany", "France", 2, 2), summary.getGames().get(4));
+        assertEqualsToGameVM("Uruguay", "Italy", 6, 6, summary.getGames().get(0));
+        assertEqualsToGameVM("Spain", "Brazil", 10, 2, summary.getGames().get(1));
+        assertEqualsToGameVM("Mexico", "Canada", 0, 5, summary.getGames().get(2));
+        assertEqualsToGameVM("Argentina", "Australia", 3, 1, summary.getGames().get(3));
+        assertEqualsToGameVM("Germany", "France", 2, 2, summary.getGames().get(4));
     }
 
     @Test
